@@ -1,0 +1,36 @@
+<!-- <p>login works!</p> -->
+
+<div class="container mt-4">
+    <h1 class="text-center"></h1>
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.status !== 'INVALID' &&registerFn()">
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" [ngClass]="{error: getControl('email')?.errors && getControl('email')?.touched}">
+        <div *ngIf="getControl('email')?.errors && getControl('email')?.touched">
+          <small class="text-danger" *ngIf="getControl('email')?.errors?.['required']">Email is required</small>
+          <small class="text-danger" *ngIf="getControl('email')?.errors?.['maxLength']">Only 32 characters are allowed.</small>
+          <small class="text-danger" *ngIf="getControl('email')?.errors?.['pattern']">Please enter a vali email.</small>
+        </div>
+      </div>
+  
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password" [ngClass]="{error: getControl('password')?.errors && getControl('password')?.touched}">
+      <div *ngIf="getControl('password')?.errors && getControl('password')?.touched">
+        <small class="text-danger" *ngIf="getControl('password')?.errors?.['required']">Password is required</small>
+        <small class="text-danger" *ngIf="getControl('password')?.errors?.['maxLength'] || getControl('password')?.errors?.['minLength']">Password should be min 8 and max 32 characters long</small>
+      </div>
+    </div>
+  
+     
+  
+      <div class="mb-3">
+        <!-- <input type="submit" class="btn btn-success"> -->
+        <p-button label="Login" (onClick)=" loginUser()"></p-button>
+<div class="mt-2">Not a member? <a routerLink="/register">Register</a></div>
+      </div>
+    </form>
+  </div> 
+
+
